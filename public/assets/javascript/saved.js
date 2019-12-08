@@ -156,7 +156,34 @@ $(document).ready(function () {
             $(".btn.save").data("article", noteData);
             //Renders HTML to modal
             renderNotesList(noteData);
+        }); 
+    };
+
+    function handleNoteSave(){
+
+        var noteData;
+        var newNote = $(".bootbox-body textarea").val().trim();
+
+        if(newNote){
+            noteData = {
+                _id: $(this).data("article")._id,
+                noteText: newNote
+            };
+            $.post("/api/notes", noteData).then(function(){
+                bootbox.hideAll();
+            });
+        };
+    };
+
+    function handleNoteDelete(){
+
+        var noteToDelete = $(this).data("_id");
+
+        $.ajax({
+            url: "/api/notes/" = noteToDelete,
+            method: "DELETE"
+        }).then(function(){
+            bootbox,hideAll();
         });
-        
-    }
+    };
 });
