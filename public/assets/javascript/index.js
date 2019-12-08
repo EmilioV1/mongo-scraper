@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     //Referencing article-container div
     var articleContainer = $(".article-container");
@@ -8,16 +8,16 @@ $(document).ready(function(){
 
     initPage();
 
-    function initPage(){
+    function initPage() {
         //Empty the article container and run an AJAX req for any unsaved headlines
         articleContainer.empty();
         $.get("/api/headlines?saved=false")
-            .then(function(data){
+            .then(function (data) {
                 //If headlines exist, render
-                if(data && data.length){
+                if (data && data.length) {
                     renderArticles(data);
                 }
-                else{
+                else {
                     //Otherwise render a message stating there are no articles
                     renderEmpty();
                 }
@@ -25,21 +25,21 @@ $(document).ready(function(){
     };
 
     //Appends article data to the page
-    function renderArticles(articles){
-        
+    function renderArticles(articles) {
+
         //Passing an array of JSON containing all available articles in our db
         var articlePanels = [];
         //Creates panels for each article
-        for(var i = 0; i < articles.length; i++){
+        for (var i = 0; i < articles.length; i++) {
             articlePanels.push(createPanel(articles[i]));
         }
         //Once all data is stored append
         articleContainer.append(articlePanels);
     };
 
-    function createPanel(article){
-        
-        var panel = 
+    function createPanel(article) {
+
+        var panel =
             $(["<div class='panel panel-default'>",
                 "<div class='panel-heading'>",
                 "<h3>",
@@ -57,12 +57,12 @@ $(document).ready(function(){
 
         panel.data("_id", article._id);
 
-        return panel;      
+        return panel;
     };
 
-    function renderEmpty(){
+    function renderEmpty() {
 
-        var emptyAlert = 
+        var emptyAlert =
             $(["<div class='alert alert-warning text-center'>",
                 "<h4>Uh Oh. Looks like we don't have any new articles.</h4>",
                 "</div>",
@@ -80,7 +80,7 @@ $(document).ready(function(){
         articleContainer.append(emptyAlert);
     };
 
-    function handleArticleSave(){
+    function handleArticleSave() {
 
         var articleToSave = $(this).parents(".panel").data();
         articleToSave.saved = true;
@@ -90,17 +90,17 @@ $(document).ready(function(){
             url: "/api/headlines",
             data: articleToSave
         })
-        .then(function(data){
-            if(data.ok){
-                initPage();
-            }
-        });
+            .then(function (data) {
+                if (data.ok) {
+                    initPage();
+                }
+            });
     };
 
-    function handleArticleScrape(){
+    function handleArticleScrape() {
 
         $.get("/api/fetch")
-            .then(function(data){
+            .then(function (data) {
 
                 initPage();
                 bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");

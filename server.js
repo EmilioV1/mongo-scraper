@@ -42,7 +42,7 @@ mongoose.connect(db, function (error) {
     //Log any errors connecting to mongoose
     if (error) {
         console.log(error);
-    } 
+    }
     //Or log a success message
     else {
         console.log("mongoose connection is successful.");

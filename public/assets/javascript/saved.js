@@ -58,7 +58,7 @@ $(document).ready(function () {
         return panel;
     };
 
-    function renderEmpty(){
+    function renderEmpty() {
         //Renders no article message
         var emptyAlert =
             $(["<div class='alert alert-warning text-center'>",
@@ -77,11 +77,11 @@ $(document).ready(function () {
         articleContainer.append(emptyAlert);
     };
 
-    function renderNotesList(data){
+    function renderNotesList(data) {
         //Initializing array and var to store notes
         var notesToRender = [];
         var currentNote;
-        if(!data.notes.length){
+        if (!data.notes.length) {
             //If no notes say so
             currentNote = [
                 "<li class='list-group-item'>",
@@ -90,9 +90,9 @@ $(document).ready(function () {
             ].join("");
             notesToRender.push(currentNote);
         }
-        else{
+        else {
             //If there are notes go through each one
-            for(var i = 0; i < data.notes.length; i++){
+            for (var i = 0; i < data.notes.length; i++) {
                 //Constructs an li element with the notes and delete button
                 currentNote = $([
                     "<li class='list-group-item note'>",
@@ -110,26 +110,26 @@ $(document).ready(function () {
         $(".note-container").append(notesToRender);
     };
 
-    function handleArticleDelete(){
+    function handleArticleDelete() {
         //Grabs id of the article to delete from the panel
         var articleToDelete = $(this).parents(".panel").data();
-    
+
         $.ajax({
             method: "DELETE",
             url: "/api/headlines/" + articleToDelete._id
-        }).then(function(data){
+        }).then(function (data) {
             //If this works, initPage again to render saved articles
-            if(data.ok){
+            if (data.ok) {
                 initPage();
             }
         });
     };
 
-    function handleArticleNotes(){
+    function handleArticleNotes() {
         //Grabs article id to get the notes from the panel
         var currentArticle = $(this).parents(".panel").data();
         //Get any notes with this headline/article id
-        $.get("/api/notes/" + currentArticle._id).then(function(data){
+        $.get("/api/notes/" + currentArticle._id).then(function (data) {
             //Building HTML to add to the notes modal
             var modalText = [
                 "<div class='container-fluid text-center'>",
@@ -156,34 +156,34 @@ $(document).ready(function () {
             $(".btn.save").data("article", noteData);
             //Renders HTML to modal
             renderNotesList(noteData);
-        }); 
+        });
     };
 
-    function handleNoteSave(){
+    function handleNoteSave() {
 
         var noteData;
         var newNote = $(".bootbox-body textarea").val().trim();
 
-        if(newNote){
+        if (newNote) {
             noteData = {
                 _id: $(this).data("article")._id,
                 noteText: newNote
             };
-            $.post("/api/notes", noteData).then(function(){
+            $.post("/api/notes", noteData).then(function () {
                 bootbox.hideAll();
             });
         };
     };
 
-    function handleNoteDelete(){
+    function handleNoteDelete() {
 
         var noteToDelete = $(this).data("_id");
 
         $.ajax({
             url: "/api/notes/" = noteToDelete,
             method: "DELETE"
-        }).then(function(){
-            bootbox,hideAll();
+        }).then(function () {
+            bootbox, hideAll();
         });
     };
 });
