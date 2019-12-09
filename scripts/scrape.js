@@ -7,16 +7,16 @@ var cheerio = require("cheerio");
 
 var scrape = function (cb) {
 
-    request("http://www.nytimes.com", function (err, res, body) {
+    request("https://www.nytimes.com", function (err, res, body) {
 
         var $ = cheerio.load(body);
 
         var articles = [];
 
-        $(".theme-summary").each(function (i, element) {
+        $(".css-8atqhb").each(function (i, element) {
 
-            var head = $(this).children(".story-heading").text().trim();
-            var sum = $(this).children(".summary").text().trim();
+            var head = $(this).children(".css-n2blzn").text().trim();
+            var sum = $(this).children(".css-1pfq5u").text().trim();
 
             if (head && sum) {
                 var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
