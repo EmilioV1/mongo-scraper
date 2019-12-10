@@ -1,7 +1,7 @@
 $(document).ready(function () {
-
     //Referencing article-container div
     var articleContainer = $(".article-container");
+
     //Adding event listeners to any "save article" and "scrape new article" buttons
     $(document).on("click", ".btn.save", handleArticleSave);
     $(document).on("click", ".scrape-new", handleArticleScrape);

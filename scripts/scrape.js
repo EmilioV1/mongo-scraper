@@ -13,11 +13,11 @@ var scrape = function (cb) {
 
         var articles = [];
 
-        $(".theme-summary").each(function (i, element) {
+        $(".css-8atqhb").each(function (i, element) {
 
-            var head = $(this).children(".story-heading").text().trim();
-            var sum = $(this).children(".summary").text().trim();
-
+            var head = $("h2", element).text().trim();
+            var sum = $("p", element).text().trim();
+            console.log("h2", head, "p", sum);
             if (head && sum) {
                 var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
                 var sumNeat = sum.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();

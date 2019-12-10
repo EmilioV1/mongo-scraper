@@ -32,7 +32,7 @@ module.exports = {
             });
     },
     update: function (query, cb) {
-        Headlines.update({ _id: query._id }, {
+        Headlines.updateOne({ _id: query._id }, {
             $set: query
         }, {}, cb);
     }
