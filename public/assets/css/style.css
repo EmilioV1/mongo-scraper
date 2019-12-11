@@ -15,10 +15,6 @@ body{
     background-color: #f5f5f5;
 }
 
-.navbar{
-    margin-bottom: 0;
-}
-
 .jumbotron{
     position: relative;
     width: 100%;
@@ -74,17 +70,19 @@ body{
 
 .panel.panel-default .panel-heading h3 {
     color: white;
+    word-wrap: break-word;
 }
 
 .panel.panel-default .panel-heading .btn {
     float: right;
-    margin-bottom: 50px;
+    margin-bottom: 9px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
 .panel.panel-default .panel-body {
     font-size: 16px;
+    margin: 7px;
 }
 
 .footer {
