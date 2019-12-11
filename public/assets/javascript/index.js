@@ -83,6 +83,7 @@ $(document).ready(function () {
     function handleArticleSave() {
 
         var articleToSave = $(this).parents(".panel").data();
+        console.log(articleToSave);
         articleToSave.saved = true;
 
         $.ajax({
@@ -106,4 +107,5 @@ $(document).ready(function () {
                 bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
             });
     };
+
 });

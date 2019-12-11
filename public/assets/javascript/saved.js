@@ -4,7 +4,7 @@ $(document).ready(function () {
     //Adding event listens for the buttons
     $(document).on("click", ".btn.delete", handleArticleDelete);
     $(document).on("click", ".btn.notes", handleArticleNotes);
-    $(document).on("click", ".btn.save", handleArticleDelete);
+    $(document).on("click", ".btn.save", handleNoteSave);
     $(document).on("click", ".btn.note-delete", handleNoteDelete);
 
     //Starts everything when page is loaded
@@ -16,7 +16,9 @@ $(document).ready(function () {
         $.get("/api/headlines?saved=true").then(function (data) {
             //If we headlines render
             if (data && data.length) {
+                console.log(data);
                 renderArticles(data);
+
             } else {
                 //Otherwise message for no articles
                 renderEmpty();
@@ -40,7 +42,7 @@ $(document).ready(function () {
             $(["<div class='panel panel-default'>",
                 "<div class='panel-heading'>",
                 "<h3>",
-                aricle.headline,
+                article.headline,
                 "<a class='btn btn-danger delete'>",
                 "Delete From Saved",
                 "</a>",
@@ -134,7 +136,7 @@ $(document).ready(function () {
             var modalText = [
                 "<div class='container-fluid text-center'>",
                 "<h4>Notes For Article: ",
-                currentArticle._id,
+                "<span style='display:none'>"+currentArticle._id+"</span>",
                 "</h4>",
                 "<hr />",
                 "<ul class='list-group note-container'>",
@@ -178,12 +180,12 @@ $(document).ready(function () {
     function handleNoteDelete() {
 
         var noteToDelete = $(this).data("_id");
-
+        console.log(noteToDelete);
         $.ajax({
-            url: "/api/notes/" = noteToDelete,
+            url: "/api/notes/"+noteToDelete,
             method: "DELETE"
         }).then(function () {
-            bootbox, hideAll();
+            bootbox.hideAll();
         });
     };
 });
