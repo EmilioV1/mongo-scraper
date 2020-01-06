@@ -1,4 +1,4 @@
-## NYT Mongo Scraper
+## NYT News Scraper
 
 This is an app where you can scrape articles from [New York Times](https://www.nytimes.com/) and add your own personalized notes to it. Try the deployed version [here](https://super-mongo-scraper.herokuapp.com/).
 
