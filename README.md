@@ -17,5 +17,5 @@ This is an app where you can scrape articles from [New York Times](https://www.n
 ### App Demo
 ![demo](Insert Demo)
 
-## Author(s)
+## Author
 [Emilio Valladares](https://github.com/emiliov1/)
